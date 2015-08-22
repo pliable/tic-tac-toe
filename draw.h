@@ -6,3 +6,4 @@
 void prompt();
 void init_board(int board[][BOARD_SIZE]);
 void draw_board(int board[][BOARD_SIZE]);
+void print_controls();

@@ -40,6 +40,16 @@ void draw_board(int board[][BOARD_SIZE]) {
       }
    }
 
+   print_controls();
+}
+
+void print_controls() {
+   printf("\n\nHit the corresponding number (hit it as hard as you can, bonus if you break your keyboard) to put your piece there\n\n");
+   printf(" 7 | 8 | 9 \n");
+   printf("-----------\n");
+   printf(" 4 | 5 | 6 \n");
+   printf("-----------\n");
+   printf(" 1 | 2 | 3 \n");
 }
 
 void prompt() {
