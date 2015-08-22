@@ -25,7 +25,7 @@ void draw_board(int board[][BOARD_SIZE]) {
          }
 
          //this is hacky and i don't like it but it works so hooray
-         if(j < 2) {
+         if(j < BOARD_SIZE - 1) {
             printf("|");
          } else {
             continue;
@@ -33,7 +33,7 @@ void draw_board(int board[][BOARD_SIZE]) {
       }
 
       //ugh also gross and hacky ugh
-      if(i < 2) {
+      if(i < BOARD_SIZE - 1) {
          printf("\n-----------\n");
       } else {
          continue;
