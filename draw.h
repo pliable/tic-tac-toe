@@ -4,6 +4,6 @@
 #define BOARD_SIZE 3
 
 void prompt();
-void init_board(int board[][BOARD_SIZE]);
-void draw_board(int board[][BOARD_SIZE]);
+void init_board(char board[][BOARD_SIZE]);
+void draw_board(char board[][BOARD_SIZE]);
 void print_controls();

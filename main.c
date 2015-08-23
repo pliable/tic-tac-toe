@@ -11,7 +11,7 @@
 
 int main(int argc, char *argv[]) {
    //keeping board in main scope to avoid them pesky global vars
-   int board[BOARD_SIZE][BOARD_SIZE];
+   char board[BOARD_SIZE][BOARD_SIZE];
    init_board(board);
    char choice;
 

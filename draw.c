@@ -1,28 +1,23 @@
 #include <stdio.h>
 #include "draw.h"
 
-void init_board(int board[][BOARD_SIZE]) {
+void init_board(char board[][BOARD_SIZE]) {
    int i, j;
 
    for(i = 0; i < BOARD_SIZE; i++) {
       for(j = 0; j < BOARD_SIZE; j++) {
-         board[i][j] = 0;
+         board[i][j] = '-';
       }
    }
 }
 
-void draw_board(int board[][BOARD_SIZE]) {
+void draw_board(char board[][BOARD_SIZE]) {
    int i, j;
 
    for(i = 0; i < BOARD_SIZE; i++) {
       for(j = 0; j < BOARD_SIZE; j++) {
-         if(board[i][j] == EMPTY_SPACE) {
-            printf(" - ");
-         } else if(board[i][j] == X_PIECE) {
-            printf(" X ");
-         } else if(board[i][j] == O_PIECE) {
-            printf(" O ");
-         }
+
+         printf(" %c ", board[i][j]);
 
          //this is hacky and i don't like it but it works so hooray
          if(j < BOARD_SIZE - 1) {
