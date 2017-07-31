@@ -18,6 +18,8 @@ int main(int argc, char *argv[]) {
    prompt();
    scanf(" %c", &choice);
 
+   printf("testing");
+
    switch(choice) {
       case '1':
          draw_board(board);
