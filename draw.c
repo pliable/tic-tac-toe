@@ -19,7 +19,7 @@ void draw_board(char board[][BOARD_SIZE]) {
 
          printf(" %c ", board[i][j]);
 
-         //this is hacky and i don't like it but it works so hooray
+         /*this is hacky and i don't like it but it works so hooray*/
          if(j < BOARD_SIZE - 1) {
             printf("|");
          } else {
@@ -27,15 +27,13 @@ void draw_board(char board[][BOARD_SIZE]) {
          }
       }
 
-      //ugh also gross and hacky ugh
+      /*ugh also gross and hacky ugh*/
       if(i < BOARD_SIZE - 1) {
          printf("\n-----------\n");
       } else {
          continue;
       }
    }
-
-   print_controls();
 }
 
 void print_controls() {
