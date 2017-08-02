@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "draw.h"
 
+/*
+   Just initializing the board with "blank" values
+   */
 void init_board(char board[][BOARD_SIZE]) {
    int i, j;
 
@@ -11,6 +14,9 @@ void init_board(char board[][BOARD_SIZE]) {
    }
 }
 
+/*
+   Drawing the board
+   */
 void draw_board(char board[][BOARD_SIZE]) {
    int i, j;
 
@@ -36,6 +42,9 @@ void draw_board(char board[][BOARD_SIZE]) {
    }
 }
 
+/*
+   displaying controls to place piece
+   */
 void print_controls() {
    printf("\n\nHit the corresponding number (hit it as hard as you can, bonus if you break your keyboard) to put your piece there\n\n");
    printf(" 7 | 8 | 9 \n");
@@ -45,6 +54,9 @@ void print_controls() {
    printf(" 1 | 2 | 3 \n");
 }
 
+/*
+   main prompt
+   */
 void prompt() {
    printf("Hello, welcome to this game of the tic tac toens\n");
    printf("------------------------------------------------\n");

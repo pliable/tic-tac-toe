@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "draw.h"
 
+void move(char board[][BOARD_SIZE], int move, int player);
 /*
  * tic-tac-toe
  * -----------
@@ -9,13 +10,11 @@
  *
  * @author Steve Choo
  */
-void move(char board[][BOARD_SIZE], int move, int player);
-
 int main(int argc, char *argv[]) {
+   /* this assumes player 1 is x and player 2 is o*/
    /*keeping board in main scope to avoid them pesky global vars*/
    char board[BOARD_SIZE][BOARD_SIZE], choice;
-   /* 0 is player 1, 1 is player 2 */
-   int player_flag = PLAYER_1, move;
+   int player_flag = PLAYER_1;
    init_board(board);
 
    prompt();
@@ -36,6 +35,7 @@ int main(int argc, char *argv[]) {
          break;
    }
 
+   /*
    while(1) {
       switch(player_flag) {
          case PLAYER_1:
@@ -50,10 +50,16 @@ int main(int argc, char *argv[]) {
 
       scanf(" %d", &move);
    }
+   */
 
    return 0;
 }
 
+/*
+   used to move a piece on the board
+   no checks implemented to see if piece is already there
+   maybe i should do dat.
+   */
 void move(char board[][BOARD_SIZE], int move, int player) {
    char piece;
 
@@ -63,6 +69,9 @@ void move(char board[][BOARD_SIZE], int move, int player) {
       piece = O_PIECE;
    }
 
+   /*
+      this is some magic numbers shit and i don't like it
+      */
    switch(move) {
       case 1:
          board[2][0] = piece;
@@ -92,5 +101,31 @@ void move(char board[][BOARD_SIZE], int move, int player) {
          board[0][2] = piece;
          break;
    }
+}
+
+/*
+   checks board horizontally if there is a winner
+   returns 0 if no winner
+   returns PLAYER_1 if p1 won
+   returns PLAYER_2 if p2 won
+
+   it's gonna return a false positive with an initialized board
+   */
+int check_horizontal(char board[][BOARD_SIZE]) {
+   int i, j, winner = 0;
+
+   for(i = 0; i < BOARD_SIZE; i++) {
+      for(j = 0; j < BOARD_SIZE; j++) {
+         if(board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+            if(board[i][j] == X_PIECE) {
+               winner = PLAYER_1;
+            } else {
+               winner = PLAYER_2;
+            }
+         }
+      }
+   }
+
+   return winner;
 }
 

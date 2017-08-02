@@ -1,4 +1,3 @@
-#define EMPTY_SPACE 0
 #define X_PIECE 'X'
 #define O_PIECE 'O'
 #define BOARD_SIZE 3
