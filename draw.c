@@ -58,7 +58,7 @@ void print_controls() {
    main prompt
    */
 void prompt() {
-   printf("Hello, welcome to this game of the tic tac toens\n");
+   printf("Hello, welcome to this shitty game of tic tac toe\n");
    printf("------------------------------------------------\n");
    printf("                1 - Start game\n");
    printf("                2 - Quit\n");

@@ -3,6 +3,8 @@
 #include "draw.h"
 
 void move(char board[][BOARD_SIZE], int move, int player);
+int check_spot(char board[][BOARD_SIZE], int location);
+int check_horizontal(char board[][BOARD_SIZE]);
 /*
  * tic-tac-toe
  * -----------
@@ -14,10 +16,13 @@ int main(int argc, char *argv[]) {
    /* this assumes player 1 is x and player 2 is o*/
    /*keeping board in main scope to avoid them pesky global vars*/
    char board[BOARD_SIZE][BOARD_SIZE], choice;
+   /* i think i used this to keep track of whose turn it is? */
    int player_flag = PLAYER_1;
-   init_board(board);
 
+   /* initialize and prompt */
+   init_board(board);
    prompt();
+
    scanf(" %c", &choice);
 
    switch(choice) {
@@ -101,6 +106,15 @@ void move(char board[][BOARD_SIZE], int move, int player) {
          board[0][2] = piece;
          break;
    }
+}
+
+/*
+   checks spot to see if piece is already there
+   returns true (1) if the spot is free
+   returns false (0) if the spot isn't free
+   */
+int check_spot(char board[][BOARD_SIZE], int location) {
+
 }
 
 /*
