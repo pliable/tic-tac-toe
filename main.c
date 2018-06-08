@@ -3,6 +3,7 @@
 #include "draw.h"
 
 void move(char board[][BOARD_SIZE], int move, int player);
+int check_spot(char board[][BOARD_SIZE], int row, int col);
 /*
  * tic-tac-toe
  * -----------
@@ -74,10 +75,14 @@ void move(char board[][BOARD_SIZE], int move, int player) {
       */
    switch(move) {
       case 1:
-         board[2][0] = piece;
+         if(board[2][0] != '-') {
+            board[2][0] = piece;
+         }
          break;
       case 2:
-         board[2][1] = piece;
+         if(board[2][1] != '-') {
+            board[2][1] = piece;
+         }
          break;
       case 3:
          board[2][2] = piece;
@@ -101,6 +106,15 @@ void move(char board[][BOARD_SIZE], int move, int player) {
          board[0][2] = piece;
          break;
    }
+}
+
+/* boolean check to see if spot on the board is occupied 
+   this assumes board sanity
+   returns GOOD (or true, or 1) if spot is valid and clear
+   returns BAD (or false, or 0) if spot isn't clear
+   */
+int check_spot(char board[][BOARD_SIZE], int row, int col) {
+   return board[row][col] == '-' ? GOOD : BAD;
 }
 
 /*
