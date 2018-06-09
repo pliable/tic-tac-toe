@@ -2,11 +2,9 @@
 #include <stdlib.h>
 #include "draw.h"
 
-<<<<<<< HEAD
 void move(char board[][BOARD_SIZE], char move, int player);
 int check_spot(char board[][BOARD_SIZE], char location);
 int check_horizontal(char board[][BOARD_SIZE]);
->>>>>>> 594ad55c922b46dca53da9fa4c81c89c4e3eda41
 /*
  * tic-tac-toe
  * -----------
