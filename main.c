@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include "draw.h"
 
-void move(char board[][BOARD_SIZE], int move, int player);
-int check_spot(char board[][BOARD_SIZE], int row, int col);
+<<<<<<< HEAD
+void move(char board[][BOARD_SIZE], char move, int player);
+int check_spot(char board[][BOARD_SIZE], char location);
+int check_horizontal(char board[][BOARD_SIZE]);
+>>>>>>> 594ad55c922b46dca53da9fa4c81c89c4e3eda41
 /*
  * tic-tac-toe
  * -----------
@@ -15,10 +18,13 @@ int main(int argc, char *argv[]) {
    /* this assumes player 1 is x and player 2 is o*/
    /*keeping board in main scope to avoid them pesky global vars*/
    char board[BOARD_SIZE][BOARD_SIZE], choice;
+   /* i think i used this to keep track of whose turn it is? */
    int player_flag = PLAYER_1;
-   init_board(board);
 
+   /* initialize and prompt */
+   init_board(board);
    prompt();
+
    scanf(" %c", &choice);
 
    switch(choice) {
@@ -61,7 +67,7 @@ int main(int argc, char *argv[]) {
    no checks implemented to see if piece is already there
    maybe i should do dat.
    */
-void move(char board[][BOARD_SIZE], int move, int player) {
+void move(char board[][BOARD_SIZE], char move, int player) {
    char piece;
 
    if(player == PLAYER_1) {
@@ -74,35 +80,31 @@ void move(char board[][BOARD_SIZE], int move, int player) {
       this is some magic numbers shit and i don't like it
       */
    switch(move) {
-      case 1:
-         if(board[2][0] != '-') {
-            board[2][0] = piece;
-         }
+      case '1':
+         board[2][0] = piece;
          break;
-      case 2:
-         if(board[2][1] != '-') {
-            board[2][1] = piece;
-         }
+      case '2':
+         board[2][1] = piece;
          break;
-      case 3:
+      case '3':
          board[2][2] = piece;
          break;
-      case 4:
+      case '4':
          board[1][0] = piece;
          break;
-      case 5:
+      case '5':
          board[1][1] = piece;
          break;
-      case 6:
+      case '6':
          board[1][2] = piece;
          break;
-      case 7:
+      case '7':
          board[0][0] = piece;
          break;
-      case 8:
+      case '8':
          board[0][1] = piece;
          break;
-      case 9:
+      case '9':
          board[0][2] = piece;
          break;
    }
@@ -113,8 +115,86 @@ void move(char board[][BOARD_SIZE], int move, int player) {
    returns GOOD (or true, or 1) if spot is valid and clear
    returns BAD (or false, or 0) if spot isn't clear
    */
-int check_spot(char board[][BOARD_SIZE], int row, int col) {
+/*int check_spot(char board[][BOARD_SIZE], int row, int col) {
    return board[row][col] == '-' ? GOOD : BAD;
+}
+*/
+/*
+   checks spot to see if piece is already there
+   returns true (1) if the spot is free
+   returns false (0) if the spot isn't free
+   */
+int check_spot(char board[][BOARD_SIZE], char location) {
+   int status;
+   /* should probably extract to a function since it's copy pasta-ed. also ugh gross
+    this code is gross*/
+   switch(location) {
+      case '1':
+         if(board[2][0] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '2':
+         if(board[2][1] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '3':
+         if(board[2][2] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '4':
+         if(board[1][0] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '5':
+         if(board[1][1] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '6':
+         if(board[1][2] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '7':
+         if(board[0][0] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '8':
+         if(board[0][1] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+      case '9':
+         if(board[0][2] == '-') {
+            status = 1;
+         } else {
+            status = 0;
+         }
+         break;
+   }
+
+   return status;
 }
 
 /*
