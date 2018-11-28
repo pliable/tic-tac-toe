@@ -2,6 +2,18 @@
 #include "draw.h"
 
 /*
+   main prompt
+   */
+void prompt() {
+   printf("Hello, welcome to this shitty game of tic tac toe\n");
+   printf("------------------------------------------------\n");
+   printf("                1 - Start game\n");
+   printf("                2 - Quit\n");
+   printf("                3 - Credits\n");
+   printf("just gimme a number and let\'s get on with it: ");
+}
+
+/*
    Just initializing the board with "blank" values
    */
 void init_board(char board[][BOARD_SIZE]) {
@@ -54,14 +66,3 @@ void print_controls() {
    printf(" 1 | 2 | 3 \n");
 }
 
-/*
-   main prompt
-   */
-void prompt() {
-   printf("Hello, welcome to this shitty game of tic tac toe\n");
-   printf("------------------------------------------------\n");
-   printf("                1 - Start game\n");
-   printf("                2 - Quit\n");
-   printf("                3 - Credits\n");
-   printf("Your number is my command, master: ");
-}
