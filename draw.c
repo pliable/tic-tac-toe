@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "draw.h"
 #include "constants.h"
+#include "draw.h"
 
 /*
    main prompt

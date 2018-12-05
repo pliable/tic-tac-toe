@@ -1,5 +1,5 @@
-#include "checks.h"
 #include "constants.h"
+#include "checks.h"
 /* boolean check to see if spot on the board is occupied 
    this assumes board sanity
    returns GOOD (or true, or 1) if spot is valid and clear
@@ -20,7 +20,7 @@
    returns true (1) if the spot is free
    returns false (0) if the spot isn't free
    */
-int check_spot(char board[][BOARD_SIZE], char location) {
+int check_spot(char board[][BOARD_SIZE], int location) {
    int status;
    /* should probably extract to a function since it's copy pasta-ed. also ugh gross
     this code is gross*/
