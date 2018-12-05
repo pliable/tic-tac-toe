@@ -64,6 +64,8 @@ int main(int argc, char *argv[]) {
    used to move a piece on the board
    no checks implemented to see if piece is already there
    maybe i should do dat.
+   6/9 (heh) update: i did dat via check_spot (i 
+   apparently even wrote another function to check oh boy fancy lol)
    */
 void move(char board[][BOARD_SIZE], char move, int player) {
    char piece;
@@ -112,6 +114,12 @@ void move(char board[][BOARD_SIZE], char move, int player) {
    this assumes board sanity
    returns GOOD (or true, or 1) if spot is valid and clear
    returns BAD (or false, or 0) if spot isn't clear
+
+   6/9/18 note: don't remember implementing this shit at all, but i guess
+   i did it. this implementation is dependent on passing/using rows and columns,
+   vs a "map".
+
+   man, this makes me want to implement this shit in Python or something so i can return dicts or tuples
    */
 /*int check_spot(char board[][BOARD_SIZE], int row, int col) {
    return board[row][col] == '-' ? GOOD : BAD;
@@ -200,14 +208,17 @@ int check_spot(char board[][BOARD_SIZE], char location) {
    returns 0 if no winner
    returns PLAYER_1 if p1 won
    returns PLAYER_2 if p2 won
-
-   it's gonna return a false positive with an initialized board
+ 
+   fuckin problems:
+   - it's gonna return a false positive with an initialized board
+   - short circuit and where you don't want to short circuit
    */
 int check_horizontal(char board[][BOARD_SIZE]) {
    int i, j, winner = 0;
 
    for(i = 0; i < BOARD_SIZE; i++) {
       for(j = 0; j < BOARD_SIZE; j++) {
+         /* short circuit and? might not wanna do dat */
          if(board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
             if(board[i][j] == X_PIECE) {
                winner = PLAYER_1;
