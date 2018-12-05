@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include "draw.h"
+#include "constants.h"
 
 /*
    main prompt
    */
 void prompt() {
-   printf("Hello, welcome to this shitty game of tic tac toe\n");
+   printf("Hello, welcome to this shitty game of tic-tac-toe\n");
    printf("------------------------------------------------\n");
    printf("                1 - Start game\n");
    printf("                2 - Quit\n");
-   printf("                3 - Credits\n");
    printf("just gimme a number and let\'s get on with it: ");
 }
 
