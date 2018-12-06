@@ -17,6 +17,7 @@ int main(int argc, char *argv[]) {
    /*keeping board in main scope to avoid them pesky global vars*/
    char board[BOARD_SIZE][BOARD_SIZE];
    /* i think i used this to keep track of whose turn it is? */
+   /* redo initialized to zero to trigger else */
    int choice, next_move, player_flag = PLAYER_1;
 
    /* initialize and prompt */
@@ -37,6 +38,7 @@ int main(int argc, char *argv[]) {
          exit(EXIT_SUCCESS);
          break;
       default:
+         /* a kind of shitty check if person puts in something else */
          printf("you broke the game i leave now\n");
          exit(EXIT_FAILURE);
          break;
@@ -52,9 +54,27 @@ int main(int argc, char *argv[]) {
             printf("Player 2 move: ");
             player_flag = PLAYER_1;
             break;
+         default:
+            printf("uh no");
+            break;
       }
 
       scanf(" %d", &next_move);
+
+      /*since you can only put your piece on a free spot, this
+        **should** hopefully be sufficient check but i'll think about it more*/
+      if(check_spot(board, next_move)) {
+         move(board, next_move, player_flag);
+      } else {
+         printf("Invalid move, try again!\n");
+
+         /*switch flag to redo the move*/
+         if(player_flag == PLAYER_1) {
+            player_flag = PLAYER_2;
+         } else {
+            player_flag = PLAYER_1;
+         }
+      }
    }
 
    return 0;

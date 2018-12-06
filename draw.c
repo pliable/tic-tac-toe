@@ -10,7 +10,7 @@ void prompt() {
    printf("------------------------------------------------\n");
    printf("                1 - Start game\n");
    printf("                2 - Quit\n");
-   printf("just gimme a number and let\'s get on with it: ");
+   printf("just gimme a number and let\'s get it on (oh yeahhhh...): ");
 }
 
 /*
