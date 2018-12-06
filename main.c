@@ -44,6 +44,7 @@ int main(int argc, char *argv[]) {
          break;
    }
 
+   /* main game loop */
    while(FOREVER_LOOP) {
       switch(player_flag) {
          case PLAYER_1:
@@ -65,6 +66,8 @@ int main(int argc, char *argv[]) {
         **should** hopefully be sufficient check but i'll think about it more*/
       if(check_spot(board, next_move)) {
          move(board, next_move, player_flag);
+         draw_board(board);
+         print_controls();
       } else {
          printf("Invalid move, try again!\n");
 

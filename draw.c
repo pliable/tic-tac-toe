@@ -32,6 +32,9 @@ void init_board(char board[][BOARD_SIZE]) {
 void draw_board(char board[][BOARD_SIZE]) {
    int i, j;
 
+   /* for a newline for a clean look, shoutout to JDS */
+   puts("");
+
    for(i = 0; i < BOARD_SIZE; i++) {
       for(j = 0; j < BOARD_SIZE; j++) {
 
@@ -63,6 +66,6 @@ void print_controls() {
    printf("-----------\n");
    printf(" 4 | 5 | 6 \n");
    printf("-----------\n");
-   printf(" 1 | 2 | 3 \n");
+   printf(" 1 | 2 | 3 \n\n");
 }
 
