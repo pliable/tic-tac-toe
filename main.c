@@ -66,6 +66,12 @@ int main(int argc, char *argv[]) {
         **should** hopefully be sufficient check but i'll think about it more*/
       if(check_spot(board, next_move)) {
          move(board, next_move, player_flag);
+         /*
+            need to check return values etc
+         check_horizontal(board);
+         check_vertical(board);
+         check_diagonal(board);
+         */
          draw_board(board);
          print_controls();
       } else {
