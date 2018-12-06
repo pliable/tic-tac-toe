@@ -25,3 +25,5 @@ clean:
 #	echo Testing myprog
 #	./myprog < inputfile
 #	echo done.
+
+#shoutout to PLN for providing original makefile which I copied it from
