@@ -13,12 +13,16 @@ void move(char board[][BOARD_SIZE], int move, int player);
  * @author Steve Choo
  */
 int main(int argc, char *argv[]) {
+/*TODO
+  - implement draw game situation (at least when board is full and no one won)
+  - uh, pat yourself on back for phase 1 completion?
+  */
    /* this assumes player 1 is x and player 2 is o*/
    /*keeping board in main scope to avoid them pesky global vars*/
    char board[BOARD_SIZE][BOARD_SIZE];
    /* i think i used this to keep track of whose turn it is? */
    /* redo initialized to zero to trigger else */
-   int choice, next_move, player_flag = PLAYER_1;
+   int choice, next_move, player_turn = PLAYER_1, winner = 0;
 
    /* initialize and prompt */
    init_board(board);
@@ -45,44 +49,53 @@ int main(int argc, char *argv[]) {
    }
 
    /* main game loop */
+
+   /*flawwwwwwwwwwwww: modifying player_turn before passing it to move, need to rearchitect this ugh */
    while(FOREVER_LOOP) {
-      switch(player_flag) {
+      /*check whose turn it is, then print out who*/
+      switch(player_turn) {
          case PLAYER_1:
             printf("Player 1 move: ");
-            player_flag = PLAYER_2;
             break;
          case PLAYER_2:
             printf("Player 2 move: ");
-            player_flag = PLAYER_1;
             break;
          default:
             printf("uh no");
             break;
       }
 
+      /* grab move */
       scanf(" %d", &next_move);
 
       /*since you can only put your piece on a free spot, this
         **should** hopefully be sufficient check but i'll think about it more*/
+      /*check if spot is free, if not, try again */
       if(check_spot(board, next_move)) {
-         move(board, next_move, player_flag);
-         /*
-            need to check return values etc
-         check_horizontal(board);
-         check_vertical(board);
-         check_diagonal(board);
-         */
+         /*sweet, spot is free, move there */
+         move(board, next_move, player_turn);
+         /* after move, see if a winner is u */
+         winner = check_all(board);
+
+         if(winner == PLAYER_1){
+            printf("Player 1 Wins! Good job! buhbye now sleepy time...\n\n");
+            exit(EXIT_SUCCESS);
+         } else if(winner == PLAYER_2){
+            printf("Player 2 Wins! Good job! buuhbye now sleepy time...\n\n");
+            exit(EXIT_SUCCESS);
+         }
+
+         /* maybe later draw board showing winning row then exit */
          draw_board(board);
          print_controls();
+         /* switch players last, especially after calling move(); */
+         if(player_turn == PLAYER_1) {
+            player_turn = PLAYER_2;
+         } else if(player_turn == PLAYER_2) {
+            player_turn = PLAYER_1;
+         }
       } else {
          printf("Invalid move, try again!\n");
-
-         /*switch flag to redo the move*/
-         if(player_flag == PLAYER_1) {
-            player_flag = PLAYER_2;
-         } else {
-            player_flag = PLAYER_1;
-         }
       }
    }
 
@@ -105,9 +118,6 @@ void move(char board[][BOARD_SIZE], int move, int player) {
       piece = O_PIECE;
    }
 
-   /*
-      this is some magic numbers shit and i don't like it
-      */
    switch(move) {
       case LOWER_LEFT:
          board[2][0] = piece;
@@ -138,4 +148,3 @@ void move(char board[][BOARD_SIZE], int move, int player) {
          break;
    }
 }
-

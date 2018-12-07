@@ -61,7 +61,7 @@ void draw_board(char board[][BOARD_SIZE]) {
    displaying controls to place piece
    */
 void print_controls() {
-   printf("\n\nHit the corresponding number (hit it as hard as you can, bonus if you break your keyboard) to put your piece there\n\n");
+   printf("\n\nSmash that corresponding number to put your piece there!\n\n");
    printf(" 7 | 8 | 9 \n");
    printf("-----------\n");
    printf(" 4 | 5 | 6 \n");
