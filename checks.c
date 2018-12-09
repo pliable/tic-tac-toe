@@ -1,20 +1,33 @@
 #include "constants.h"
 #include "checks.h"
-/* boolean check to see if spot on the board is occupied 
-   this assumes board sanity
-   returns GOOD (or true, or 1) if spot is valid and clear
-   returns BAD (or false, or 0) if spot isn't clear
 
-   6/9/18 note: don't remember implementing this shit at all, but i guess
-   i did it. this implementation is dependent on passing/using rows and columns,
-   vs a "map".
+/* checks if there is a draw game situation
+   where every location on the board is filled
 
-   man, this makes me want to implement this shit in Python or something so i can return dicts or tuples
+   returns true (1) if there is a draw game (ie: all spots on board are filled by X or O pieces)
+   returns false (0) if there is not a draw game (ie: moves still available)
    */
-/*int check_spot(char board[][BOARD_SIZE], int row, int col) {
-   return board[row][col] == '-' ? GOOD : BAD;
+int check_draw(char board[][BOARD_SIZE]) {
+   int i, j, draw_game = 1;
+
+   /* kinda quick and dirty but we're assuming a draw game occurs if every position filled up and
+      no winners declared*/
+   for(i = 0; i < BOARD_SIZE; i++) {
+      for(j = 0; j < BOARD_SIZE; j++) {
+         if(board[i][j] == '-') {
+            draw_game = 0;
+            break;
+         }
+      }
+      /* quick and dirty break out of outer loop*/
+      if(!draw_game) {
+         break;
+      }
+   }
+
+   return draw_game;
 }
-*/
+
 int check_all(char board[][BOARD_SIZE]) {
    /* initializing for funsies cause o ya the checks_ return a 0 for no winner lol */
    int winner = 0, horizontal = 0, vertical = 0, diagonal = 0;
@@ -147,18 +160,25 @@ int check_horizontal(char board[][BOARD_SIZE]) {
       for(j = 0; j < BOARD_SIZE; j++) {
          /*if all three in a row match... we have potential winner*/
          /*short circuit on false which is fine*/
-         if(board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
+         if(board[j][0] == board[j][1] && board[j][1] == board[j][2]) {
             /* if all three are '-', then we got a false positive, so skip */
-            if(board[i][0] == '-' && board[i][1] == '-' && board[i][2] == '-') {
+            if(board[j][0] == '-' && board[j][1] == '-' && board[j][2] == '-') {
                continue;
             } else {
-               if(board[i][j] == X_PIECE) {
+               /*just going to look at last piece since the previous i,j search was grabbing
+                 wrong pieces*/
+               if(board[j][2] == X_PIECE) {
                   winner = PLAYER_1;
                } else {
                   winner = PLAYER_2;
                }
+               break;
             }
          }
+      }
+      /* slight reverse in logic compared to check_draw heh */
+      if(winner) {
+         break;
       }
    }
 
@@ -177,17 +197,22 @@ int check_vertical(char board[][BOARD_SIZE]) {
 
    for(i = 0; i < BOARD_SIZE; i++) {
       for(j = 0; j < BOARD_SIZE; j++) {
-         if(board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
-            if(board[0][i] == '-' && board[1][i] == '-' && board[2][i] == '-') {
+         if(board[0][j] == board[1][j] && board[1][j] == board[2][j]) {
+            if(board[0][j] == '-' && board[1][j] == '-' && board[2][j] == '-') {
                continue;
             } else {
-               if(board[i][j] == X_PIECE) {
+               if(board[2][j] == X_PIECE) {
                   winner = PLAYER_1;
                } else {
                   winner = PLAYER_2;
                }
+               break;
             }
          }
+      }
+      /* slight reverse in logic compared to check_draw heh */
+      if(winner) {
+         break;
       }
    }
 
@@ -234,3 +259,20 @@ int check_diagonal(char board[][BOARD_SIZE]) {
 
    return winner;
 }
+
+/* keep for now ionno */
+/* boolean check to see if spot on the board is occupied 
+   this assumes board sanity
+   returns GOOD (or true, or 1) if spot is valid and clear
+   returns BAD (or false, or 0) if spot isn't clear
+
+   6/9/18 note: don't remember implementing this shit at all, but i guess
+   i did it. this implementation is dependent on passing/using rows and columns,
+   vs a "map".
+
+   man, this makes me want to implement this shit in Python or something so i can return dicts or tuples
+   */
+/*int check_spot(char board[][BOARD_SIZE], int row, int col) {
+   return board[row][col] == '-' ? GOOD : BAD;
+}
+*/

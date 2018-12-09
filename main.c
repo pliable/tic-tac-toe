@@ -50,7 +50,6 @@ int main(int argc, char *argv[]) {
 
    /* main game loop */
 
-   /*flawwwwwwwwwwwww: modifying player_turn before passing it to move, need to rearchitect this ugh */
    while(FOREVER_LOOP) {
       /*check whose turn it is, then print out who*/
       switch(player_turn) {
@@ -81,7 +80,12 @@ int main(int argc, char *argv[]) {
             printf("Player 1 Wins! Good job! buhbye now sleepy time...\n\n");
             exit(EXIT_SUCCESS);
          } else if(winner == PLAYER_2){
-            printf("Player 2 Wins! Good job! buuhbye now sleepy time...\n\n");
+            printf("Player 2 Wins! Good job! buhbye now sleepy time...\n\n");
+            exit(EXIT_SUCCESS);
+         }
+
+         if(check_draw(board)) {
+            printf("Oh snap, a draw! Y'all must be great at tic-tac-toe waow!\nWell, buhbye\n\n");
             exit(EXIT_SUCCESS);
          }
 
