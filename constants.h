@@ -23,3 +23,7 @@
 
 /* me just being a naughty boy */
 #define FOREVER_LOOP 1
+
+/* upper and lower bounds for rand() call*/
+#define UPPER_BOUND 9
+#define LOWER_BOUND 1

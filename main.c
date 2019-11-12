@@ -30,8 +30,9 @@ int main(int argc, char *argv[]) {
 
    scanf(" %d", &choice);
 
-   /* no checky input here, should checky input maybe */
 
+
+   /* no checky input here, should checky input maybe */
    switch(choice) {
       case START_GAME:
          draw_board(board);
@@ -55,9 +56,11 @@ int main(int argc, char *argv[]) {
       switch(player_turn) {
          case PLAYER_1:
             printf("Player 1 move: ");
+            scanf(" %d", &next_move);
             break;
          case PLAYER_2:
             printf("Player 2 move: ");
+            next_move = (rand() % (UPPER_BOUND - LOWER_BOUND + 1)) + LOWER_BOUND;
             break;
          default:
             printf("uh no");
@@ -65,7 +68,7 @@ int main(int argc, char *argv[]) {
       }
 
       /* grab move */
-      scanf(" %d", &next_move);
+      /* need to do a more robust check for other chars*/
 
       /*since you can only put your piece on a free spot, this
         **should** hopefully be sufficient check but i'll think about it more*/
@@ -149,6 +152,15 @@ void move(char board[][BOARD_SIZE], int move, int player) {
          break;
       case UPPER_RIGHT:
          board[0][2] = piece;
+         break;
+      default:
+         /*i forget if default needs a break but fuck it*/
+         /* shit man i really don't know what to do in terms of erroring out.
+            i already check to see if a move is valid before i call move.
+            eh fuck it'll just print to stderr and exit the entire thing lmao */
+         fprintf(stderr, "uh shit is fucked so bye lol\n");
+         exit(EXIT_FAILURE);
+         /* okay now adding the break here is just silly. but i'm a silly man so there it goes */
          break;
    }
 }

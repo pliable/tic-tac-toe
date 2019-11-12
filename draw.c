@@ -28,6 +28,8 @@ void init_board(char board[][BOARD_SIZE]) {
 
 /*
    Drawing the board
+   i was told by a very cool dude that this isn't hacky so hooray.
+   i'm still gonna leave the comments there though because i'm soOoOoOo wacky
    */
 void draw_board(char board[][BOARD_SIZE]) {
    int i, j;

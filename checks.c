@@ -71,67 +71,31 @@ int check_spot(char board[][BOARD_SIZE], int location) {
     this code is gross*/
    switch(location) {
       case LOWER_LEFT:
-         if(board[2][0] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[2][0] == '-';
          break;
       case LOWER_CENTER:
-         if(board[2][1] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[2][1] == '-';
          break;
       case LOWER_RIGHT:
-         if(board[2][2] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[2][2] == '-';
          break;
       case CENTER_LEFT:
-         if(board[1][0] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[1][0] == '-';
          break;
       case CENTER:
-         if(board[1][1] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[1][1] == '-';
          break;
       case CENTER_RIGHT:
-         if(board[1][2] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[1][2] == '-';
          break;
       case UPPER_LEFT:
-         if(board[0][0] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[0][0] == '-';
          break;
       case UPPER_CENTER:
-         if(board[0][1] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[0][1] == '-';
          break;
       case UPPER_RIGHT:
-         if(board[0][2] == '-') {
-            status = 1;
-         } else {
-            status = 0;
-         }
+         status = board[0][2] == '-';
          break;
    }
 
@@ -229,23 +193,17 @@ int check_diagonal(char board[][BOARD_SIZE]) {
    int winner = 0;
 
    if(board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
-      if(board[0][0] == '-' && board[1][1] == '-' && board[2][2] == '-') {
-         /*false positive, nop */
-
-      } else {
+      if(!(board[0][0] == '-' && board[1][1] == '-' && board[2][2] == '-')) {
          if(board[2][2] == X_PIECE) {
             winner = PLAYER_1;
          } else {
             winner = PLAYER_2;
          }
-      }
+      } 
    }
 
    if(board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
-      if(board[0][2] == '-' && board[1][1] == '-' && board[2][0] == '-') {
-         /*false positive, nop */
-
-      } else {
+      if(!(board[0][2] == '-' && board[1][1] == '-' && board[2][0] == '-')) {
          if(board[2][0] == X_PIECE) {
             winner = PLAYER_1;
          } else {
